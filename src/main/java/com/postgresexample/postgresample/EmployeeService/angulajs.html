@@ -1,0 +1,46 @@
+<html>
+           <body>
+           <form>
+       First name: <input type="text" name="fname" value="Donald"><br>
+        Last name: <input type="text" name="lname" value="Duck"><br>
+          Addr1: <input type="text" name="add" value="123 Pond Dr"><br>
+           City: <input type="text" name="city" value="Duckopolis"><br>
+      </form> 
+
+
+
+           <button onclick="smc()">Submit</button>
+
+                   <script>
+             function smc() {
+                  var http = new XMLHttpRequest();
+                       var url = "yourphpfile.php";
+                     var x = document.forms[0];
+                          var xstr = "";
+                         var ta ="";
+                    var tb ="";
+                var i;
+               for (i = 0; i < x.length; i++) {
+     if (i==0){ta = x.elements[i].name+"="+ x.elements[i].value;}else{
+       tb = tb+"&"+ x.elements[i].name +"=" + x.elements[i].value;
+             } }
+
+           xstr = ta+tb;
+      http.open("POST", url, true);
+       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+      http.onreadystatechange = function() {
+          if(http.readyState == 4 && http.status == 200) {
+
+        // do whatever you want to with the html output response here
+
+                } 
+
+               }
+            http.send(xstr);
+
+              }
+         </script>
+
+         </body>
+     </html>
